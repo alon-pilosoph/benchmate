@@ -28,7 +28,6 @@ Benchmate is a web app where users can add and review public benches. Additional
 
 
 ## Features
-List the ready features here:
 - CRUD operations with RESTful routes
 - Local authentication and authorization with Passport
 - Fully responsive design
@@ -78,5 +77,5 @@ Once registered and logged in, go to 'New Bench' to create a new bench. You can 
 
 
 ## Acknowledgements
-- This project is an implementation and expansion of YelpCamp, the final project in Colt Steele's 2022 Web Developer Bootcamp on Udemy
-- It was inspired by a [Facebook group](https://www.facebook.com/tlvbench/) formerly dedicated to review benches in Tel Aviv
+- This project is an implementation and expansion of YelpCamp, the final project in Colt Steele's 2022 Web Developer Bootcamp on Udemy.
+- It was inspired by a [Facebook group](https://www.facebook.com/tlvbench/) dedicated to review benches in Tel Aviv.
