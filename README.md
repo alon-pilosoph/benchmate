@@ -13,7 +13,7 @@
 
 
 ## General Information
-Benchmate is a web app where users can add and review public benches. Additionally, users can explore benches on a map and sort benches by different criteria. This app was built as a final project in Colt Steele's [_Web Developer Bootcamp_](https://www.udemy.com/course/the-web-developer-bootcamp/) on Udemy. It encourages people to share their favorite spots in their city and take ownership of the city's public space.
+Benchmate is a web app where users can add and review public benches. Additionally, users can explore benches on a map and sort benches by different criteria. This app was built as a final project in Colt Steele's [Web Developer Bootcamp](https://www.udemy.com/course/the-web-developer-bootcamp/) on Udemy. It encourages people to share their favorite spots in their city and take ownership of the city's public space.
 
 
 ## Technologies Used
@@ -82,5 +82,5 @@ Once registered and logged in, go to 'New Bench' to add a new bench. You can als
 
 
 ## Acknowledgements
-- This project is an implementation and expansion of YelpCamp, the final project in Colt Steele's [_Web Developer Bootcamp_](https://www.udemy.com/course/the-web-developer-bootcamp/) on Udemy.
+- This project is an implementation and expansion of YelpCamp, the final project in Colt Steele's [Web Developer Bootcamp](https://www.udemy.com/course/the-web-developer-bootcamp/) on Udemy.
 - It was inspired by a [Facebook group](https://www.facebook.com/tlvbench/) dedicated to review benches in Tel Aviv.
