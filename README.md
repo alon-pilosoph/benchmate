@@ -78,7 +78,7 @@ DB_URL=<url>
 3. Visit [localhost:3000](http://localhost:3000/).
 
 Users need to be registed and logged in to add new benches or review existing ones. Go to 'Register' to create an account.\
-Once registered and logged in, go to 'New Bench' to create a new bench. You can also review a specific bench by navigating to its page.
+Once registered and logged in, go to 'New Bench' to add a new bench. You can also review a specific bench by navigating to its page.
 
 
 ## Acknowledgements
