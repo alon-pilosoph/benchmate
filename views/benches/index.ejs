@@ -1,0 +1,58 @@
+<% layout('layouts/boilerplate') %>
+
+<div id="index-map"></div>
+<div class="tile-lg mt-4 mb-5">
+  <%- include('../partials/flash') %>
+  <div class="dropdown">
+    <a class="btn btn-success dropdown-toggle" href="" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+      Sort by
+    </a>
+    <ul id="sort-list" class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+      <li><a class="dropdown-item" href="benches?sortby=address">Street Name</a></li>
+      <li><a class="dropdown-item" href="benches?sortby=rating">Highest Rated</a></li>
+      <li><a class="dropdown-item" href="benches?sortby=reviews">Most Reviewed</a></li>
+    </ul>
+  </div>
+  <div class="row">
+    <% for (let bench of benches) { %>
+    <div class="col-sm-12 col-md-6 col-lg-4">
+      <div class="card shadow border mt-4">
+        <a href="/benches/<%= bench._id %>"><img class="card-img-top bench-img" src="<%- (bench.images.length > 0) ? bench.images[0].resized : defaultImage %>"></a>
+        <div class="card-body">
+          <h5 class="card-title mb-3">
+            <a href="/benches/<%= bench._id %>" class="link-success text-decoration-none"><%= bench.shortAddress %></a>
+          </h5>
+          <h6 class="card-subtitle">
+            <% if(bench.reviews.length === 0) { %>
+            <span class="text-muted">No Reviews</span>
+            <% } else { %>
+            <span class="stars">
+              <% if (bench.rating.average % 1 != 0) { %>
+              <% const full = '<i class="fa-solid fa-star"></i>'.repeat(Math.floor(bench.rating.average)); %>
+              <% const empty = '<i class="fa-regular fa-star"></i>'.repeat(Math.floor(5 - bench.rating.average)); %>
+              <%- full + '<i class="fa-solid fa-star-half-stroke"></i>' + empty %>
+              <% } else { %>
+              <%- '<i class="fa-solid fa-star"></i>'.repeat(bench.rating.average) + '<i class="fa-regular fa-star"></i>'.repeat(5 - bench.rating.average) %>
+              <% } %>
+            </span>
+            <%= `(${parseFloat(bench.rating.average.toFixed(2))})` %>
+            <% if (bench.reviews.length === 1) { %>
+            <span class="text-muted"><%= bench.reviews.length %> Review</span>
+            <% } else { %>
+            <span class="text-muted"><%= bench.reviews.length %> Reviews</span>
+            <% } %>
+            <% } %>
+          </h6>
+        </div>
+      </div>
+    </div>
+    <% } %>
+  </div>
+</div>
+
+<script>
+  const benchList = <%- JSON.stringify(benches) %>;
+</script>
+<script src="/js/distanceSort.js"></script>
+<script src="/js/indexMap.js"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAccS0ZZNDmIGYfLG6VSZ6r0WrRothXMJQ&callback=initMap"></script>

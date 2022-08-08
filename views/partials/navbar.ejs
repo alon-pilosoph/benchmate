@@ -1,0 +1,23 @@
+<nav class="navbar navbar-expand-lg bg-custom shadow">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/"><img class="me-2" id="brand-image" src="https://res.cloudinary.com/dbx3a0ync/image/upload/v1659604618/Benchmate/bench_vmnvfa.png" alt="Benchmate Brand">Benchmate</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link" href="/">Home</a>
+        <a class="nav-link" href="/benches">Benches</a>
+        <a class="nav-link" href="/benches/new">New Bench</a>
+      </div>
+      <div class="navbar-nav ms-auto">
+        <% if (!currentUser) { %>
+        <a class="nav-link" href="/login">Login</a>
+        <a class="nav-link" href="/register">Register</a>
+        <% } else { %>
+        <a class="nav-link" href="/logout">Logout</a>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</nav>

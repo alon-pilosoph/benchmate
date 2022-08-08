@@ -1,0 +1,151 @@
+<% layout('layouts/boilerplate') %>
+
+<div class="container my-5">
+  <%- include('../partials/flash') %>
+  <div class="row">
+    <div class="col-6">
+      <div class="card mb-2">
+        <% if (bench.images.length> 0) { %>
+        <div id="carousel" class="carousel slide carousel-fade" data-bs-ride="true">
+          <div class="carousel-indicators">
+            <% if (bench.images.length> 1) { %>
+            <% bench.images.forEach((img, i)=> { %>
+            <button type="button" data-bs-target="#carousel" data-bs-slide-to="<%= i %>" <%- i===0
+                    ? 'class="active" aria-current="true"' : '' %> aria-label="Slide <%= i %>"></button>
+            <% })} %>
+          </div>
+          <div class="carousel-inner">
+            <% bench.images.forEach((img, i)=> { %>
+            <div class="carousel-item<%= i === 0 ? ' active' : '' %>">
+              <img src="<%= img.resized %>" class="d-block w-100 card-img-top" alt="">
+            </div>
+            <% }) %>
+          </div>
+          <% if (bench.images.length> 1) { %>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+          <% } %>
+        </div>
+        <% } else { %>
+        <img src="<%- defaultImage %>" class="d-block w-100 card-img-top" alt="">
+        <% } %>
+        <div class="card-body pb-1">
+          <h4 class="card-title mb-2">
+            <%= bench.shortAddress %>
+          </h4>
+          <h6 class="card-subtitle mb-3">
+            <% if(bench.reviews.length === 0) { %>
+            <span class="text-muted">No Reviews</span>
+            <% } else { %>
+            <span class="stars">
+              <% if (bench.rating.average % 1 != 0) { %>
+              <% const full = '<i class="fa-solid fa-star"></i>'.repeat(Math.floor(bench.rating.average)); %>
+              <% const empty = '<i class="fa-regular fa-star"></i>'.repeat(Math.floor(5 - bench.rating.average)); %>
+              <%- full + '<i class="fa-solid fa-star-half-stroke"></i>' + empty %>
+              <% } else { %>
+              <%- '<i class="fa-solid fa-star"></i>'.repeat(bench.rating.average) + '<i class="fa-regular fa-star"></i>'.repeat(5 - bench.rating.average) %>
+              <% } %>
+            </span>
+            <%= `(${parseFloat(bench.rating.average.toFixed(2))})` %>
+
+            <% if (bench.reviews.length === 1) { %>
+            <span class="text-muted"><%= bench.reviews.length %> Review</span>
+            <% } else { %>
+            <span class="text-muted"><%= bench.reviews.length %> Reviews</span>
+            <% } %>
+            <% } %>
+          </h6>
+          <p class="card-text">
+            <%= bench.description %>
+          </p>
+          <p class="card-text text-muted small mb-2">
+            Submitted by <%= bench.author.username %>, <%= moment(bench.createdAt).format("MMM D, YYYY") %>
+          </p>
+        </div>
+        <% if (currentUser && bench.author.equals(currentUser._id)) { %>
+        <div class="card-body pt-0">
+          <a href="/benches/<%=bench._id%>/edit" class="card-link btn btn-success">Edit</a>
+          <form class="d-inline" action="/benches/<%=bench._id%>?_method=DELETE" method="POST">
+            <button class="btn btn-danger">Delete</button>
+          </form>
+        </div>
+        <% } %>
+        <div id="map"></div>
+      </div>
+    </div>
+    <div class="col-6">
+      <% if (currentUser) { %>
+      <div class="card mb-2">
+        <div class="card-body">
+          <h4 class="card-title mb-0">Leave a Review</h4>
+          <p class="mb-0">Rating:</p>
+          <form class="needs-validation mb-0" action="/benches/<%= bench._id %>/reviews" method="POST" novalidate>
+            <div class="stars rating mb-2">
+              <input type="radio" name="review[rating]" class="star" id="5-stars" value="5">
+              <label class="star" for="5-stars"></label>
+              <input type="radio" name="review[rating]" class="star" id="4-stars" value="4">
+              <label class="star" for="4-stars"></label>
+              <input type="radio" name="review[rating]" class="star" id="3-stars" value="3">
+              <label class="star" for="3-stars"></label>
+              <input type="radio" name="review[rating]" class="star" id="2-stars" value="2">
+              <label class="star" for="2-stars"></label>
+              <input type="radio" name="review[rating]" class="star" id="1-star" value="1">
+              <label class="star" for="1-star"></label>
+            </div>
+            <div class="mb-2">
+              <label class="form-label" for="title">Headline:</label>
+              <input type="text" class="form-control" name="review[headline]" id="title" required>
+              <div class="invalid-feedback">
+                Please provide a headline for your review.
+              </div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label" for="body">Review:</label>
+              <textarea class="form-control" name="review[body]" id="body" cols="30" rows="3" required></textarea>
+              <div class="invalid-feedback">
+                Reviews cannot be empty.
+              </div>
+            </div>
+            <button class="btn btn-success" type="submit">Submit</button>
+          </form>
+        </div>
+      </div>
+      <% } %>
+      <% for (let review of bench.reviews) { %>
+      <div class="card mb-2">
+        <div class="card-body">
+          <p class="stars fs-5 mb-1">
+            <%- '<i class="fa-solid fa-star"></i>'.repeat(review.rating) %><%- '<i class="fa-regular fa-star"></i>'.repeat(5 - review.rating) %>
+          </p>
+          <h5 class="card-title">
+            <%= review.headline %>
+          </h5>
+          <h6 class="card-subtitle mb-2 text-muted fw-normal small"><%= review.author.username %>, <%= moment(bench.createdAt).fromNow() %>
+          </h6>
+          <p></p>
+          <p class="card-text">
+            <%= review.body %>
+          </p>
+          <% if (currentUser && review.author.equals(currentUser._id)) { %>
+          <form action="/benches/<%= bench._id %>/reviews/<%= review._id %>?_method=DELETE" method="POST">
+            <button class="btn btn-danger">Delete</button>
+          </form>
+          <% } %>
+        </div>
+      </div>
+      <% } %>
+    </div>
+  </div>
+</div>
+
+<script>
+  const benchJson = <%- JSON.stringify(bench) %>;
+</script>
+<script src="/js/showMap.js"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAccS0ZZNDmIGYfLG6VSZ6r0WrRothXMJQ&callback=initMap"></script>

@@ -1,0 +1,172 @@
+/* set color of navbar and footer */
+.bg-custom {
+    background-color: #B9D3C2;
+}
+
+/* set centered responsive div */
+.tile-sm {
+    margin: auto;
+    width: 90%;
+    max-width: 400px;
+}
+
+.tile-md {
+    margin: auto;
+    width: 90%;
+    max-width: 600px;
+}
+
+.tile-lg {
+    margin: auto;
+    width: 90%;
+    max-width: 1200px;
+}
+
+.bench-img {
+    transition: opacity 0.15s;
+}
+
+.bench-img:hover {
+    opacity: 0.75;
+}
+
+/* set landing page background image */
+#landing {
+    height: 100vh;
+    background-image:
+        url("https://res.cloudinary.com/dbx3a0ync/image/upload/v1659640257/Benchmate/bg-map_vac2p9.png");
+    background-size: cover;
+    background-position: bottom;
+}
+
+/* set size of navbar brand */
+#brand-image {
+    width: 30px;
+}
+
+/* set size of image on home page */
+#landing-image {
+    width: 50px;
+}
+
+/* set size of map on index page */
+#index-map {
+    width: 100%;
+    height: 400px;
+}
+
+/* set size of map on show page */
+#map {
+    width: 100%;
+    height: 300px;
+}
+
+/* organize stars in container */
+.rating {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: start;
+}
+
+/* hide radio input */
+input.star {
+    display: none;
+}
+
+/* label of radio input */
+label.star {
+    font-size: 30px;
+    font-family: FontAwesome;
+}
+
+/* change cursor to indicate label is clickable */
+label.star:hover {
+    cursor: pointer;
+}
+
+/* set default label to empty star */
+label.star::before {
+    content: '\f006';
+}
+
+/* fill all stars before the one being hovered */
+input.star:hover~label.star::before {
+    content: '\f005';
+}
+
+/* fill all stars before the one checked */
+input.star:checked~label.star::before {
+    content: '\f005';
+}
+
+/* color stars */
+.stars {
+    color: #B9D3C2;
+}
+
+/* hide checkbox input */
+input[type="checkbox"] {
+    display: none;
+}
+
+/* customize checkbox image label */
+.imageLabel {
+    display: inline-block;
+    position: relative;
+    margin: 10px;
+    cursor: pointer;
+}
+
+/* customize checkmark in the corner of image */
+.imageLabel:before {
+    color: white;
+    content: " ";
+    display: inline-block;
+    border-radius: 50%;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    line-height: 25px;
+    transition-duration: 0.2s;
+    transform: scale(0);
+}
+
+/* show checkmark in the corner when checked */
+:checked+.imageLabel:before {
+    content: "\f00d";
+    font-family: FontAwesome;
+    font-size: 15px;
+    background-color: var(--bs-danger);
+    transform: scale(1);
+}
+
+/* Google map custom controller */
+.controlUI {
+    background-color: #fff;
+    border: 2px solid #fff;
+    border-radius: 3px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, .3);
+    cursor: pointer;
+    margin: 10px;
+    text-align: center;
+}
+
+.controlText {
+    color: #666;
+    font-size: 16px;
+    line-height: 38px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.controlText:hover {
+    color: rgb(25, 25, 25);
+}
+
+.dropdown-item:active {
+    color: black;
+    background-color: #B9D3C2;
+}
