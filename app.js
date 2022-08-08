@@ -25,7 +25,7 @@ const benchRoutes = require('./routes/benches');
 const reviewRoutes = require('./routes/reviews');
 
 // Connect to MongoDB with mongoose
-const dbUrl = process.env.DB_URL || 'mongodb://127.0.0.1:27017/benchmate';
+const dbUrl = process.env.DB_URL;
 mongoose.connect(dbUrl);
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));
@@ -172,7 +172,7 @@ app.use((err, req, res, next) => {
 });
 
 // Listen for connections
-const port = process.env.PORT || 3000;
+const port = process.env.PORT;
 app.listen(port, () => {
     console.log(`Serving on port ${port}`);
 });
