@@ -25,8 +25,7 @@ const benchRoutes = require('./routes/benches');
 const reviewRoutes = require('./routes/reviews');
 
 // Connect to MongoDB with mongoose
-const dbUrl = process.env.DB_URL;
-mongoose.connect(dbUrl);
+mongoose.connect(process.env.DB_URL);
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));
 db.once("open", () => {
@@ -50,7 +49,7 @@ app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 // Sanitize inputs against query selector injection attacks
 app.use(mongoSanitize());
 
-const secret = process.env.SECRET || 'appsecretkey';
+const secret = process.env.SECRET;
 
 // Set up Mongo session store
 const store = MongoStore.create({
@@ -172,7 +171,6 @@ app.use((err, req, res, next) => {
 });
 
 // Listen for connections
-const port = process.env.PORT;
-app.listen(port, () => {
-    console.log(`Serving on port ${port}`);
+app.listen(process.env.PORT, () => {
+    console.log(`Serving on port ${process.env.PORT}`);
 });
