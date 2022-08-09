@@ -4,13 +4,36 @@
 <div class="tile-lg mt-4 mb-5">
   <%- include('../partials/flash') %>
   <div class="dropdown">
-    <a class="btn btn-success dropdown-toggle" href="" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+    <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
       Sort by
-    </a>
+    </button>
     <ul id="sort-list" class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-      <li><a class="dropdown-item" href="benches?sortby=address">Street Name</a></li>
-      <li><a class="dropdown-item" href="benches?sortby=rating">Highest Rated</a></li>
-      <li><a class="dropdown-item" href="benches?sortby=reviews">Most Reviewed</a></li>
+      <li>
+        <form action="">
+          <input type="hidden" name="sortby" value="address">
+          <button type="submit" class="dropdown-item">Street Name</button>
+        </form>
+      </li>
+      <li>
+        <form action="">
+          <input type="hidden" name="sortby" value="rating">
+          <button type="submit" class="dropdown-item">Highest Rated</button>
+        </form>
+      </li>
+      <li>
+        <form action="">
+          <input type="hidden" name="sortby" value="reviews">
+          <button type="submit" class="dropdown-item">Most Reviewed</button>
+        </form>
+      </li>
+      <li id="sort-item">
+        <form action="">
+          <input type="hidden" name="sortby" value="distance">
+          <input type="hidden" id="lng-input" name="lng" value="">
+          <input type="hidden" id="lat-input" name="lat" value="">
+          <button type="submit" class="dropdown-item">Closest to Me</button>
+        </form>
+      </li>
     </ul>
   </div>
   <div class="row">
@@ -53,6 +76,6 @@
 <script>
   const benchList = <%- JSON.stringify(benches) %>;
 </script>
-<script src="/js/distanceSort.js"></script>
+<script src="/js/sortDistance.js"></script>
 <script src="/js/indexMap.js"></script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAccS0ZZNDmIGYfLG6VSZ6r0WrRothXMJQ&callback=initMap"></script>
