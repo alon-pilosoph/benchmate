@@ -6,7 +6,12 @@
   <form class="needs-validation" action="/benches/<%=bench._id%>?_method=PUT" method="POST" enctype="multipart/form-data" novalidate>
     <div class="mb-3">
       <label class="form-label" for="address">Address</label>
-      <input class="form-control" type="text" id="address" name="address" value="<%= bench.address %>" required>
+      <div class="input-group">
+        <input class="form-control" type="text" id="address" name="address" value="<%= bench.address %>" required>
+        <button class="btn btn-outline-success" type="button" id="locate" title="Set current location">
+          <i class="fa-solid fa-location-crosshairs"></i>
+        </button>
+      </div>
       <div class="invalid-feedback">
         Please provide an address.
       </div>
@@ -26,7 +31,7 @@
     <div class="mb-3">
       <p class="mb-0">Remove Images</p>
       <div>
-        <% bench.images.forEach(function(img, i) {  %>
+        <% bench.images.forEach(function(img, i) { %>
         <div class="form-check form-check-inline">
           <input class="form-check-input" type="checkbox" id="image-<%= i %>" name="deleteImages[]" value="<%= img.filename %>">
           <label class="imageLabel form-check-label" for="image-<%= i %>"><img src="<%= img.thumbnail %>" class="img-thumbnail" alt=""></label>
@@ -43,3 +48,5 @@
     <a href="/benches/<%= bench._id%>" class="link-success">Back to Bench</a>
   </div>
 </div>
+<script src="/js/getAddress.js"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAccS0ZZNDmIGYfLG6VSZ6r0WrRothXMJQ&language=en"></script>
