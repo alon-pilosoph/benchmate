@@ -8,7 +8,7 @@ const nodeGeocoder = require('node-geocoder');
 const geocoder = nodeGeocoder({
     provider: 'google',
     httpAdapter: 'https',
-    apiKey: process.env.MAPS_API_KEY,
+    apiKey: process.env.MAPS_PRIVATE_API_KEY,
     formatter: null
 });
 

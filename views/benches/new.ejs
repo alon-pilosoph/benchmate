@@ -1,39 +1,37 @@
 <% layout('layouts/boilerplate') %>
 
-  <div class="tile-md my-5">
-    <%- include('../partials/flash') %>
-      <h1 class="text-center">New Bench</h1>
-      <form class="needs-validation" action="/benches" method="POST" enctype="multipart/form-data" novalidate>
-        <div class="mb-3">
-          <label class="form-label" for="address">Address</label>
-          <div class="input-group">
-            <input class="form-control" type="text" id="address" name="address" required>
-            <button class="btn btn-outline-success" type="button" id="locate" title="Set current location"><i
-                class="fa-solid fa-location-crosshairs"></i></button>
-          </div>
-          <div class="invalid-feedback">
-            Please provide an address.
-          </div>
-        </div>
-        <div class="mb-3">
-          <label class="form-label" for="description">Description</label>
-          <textarea class="form-control" name="description" required><%- description %></textarea>
-          <div class="invalid-feedback">
-            Please provide a description.
-          </div>
-        </div>
-        <div class="mb-3">
-          <label class="form-label" for="images">Images</label>
-          <input class="form-control" type="file" id="images" name="images" multiple>
-        </div>
-        <div class="mb-3">
-          <button class="btn btn-success">Add Bench</button>
-        </div>
-        <div class="text-center">
-          <a href="/benches" class="link-success">All Benches</a>
-        </div>
-      </form>
-  </div>
-  <script src="/js/getAddress.js"></script>
-  <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAccS0ZZNDmIGYfLG6VSZ6r0WrRothXMJQ&language=en"></script>
+<div class="tile-md my-5">
+  <%- include('../partials/flash') %>
+  <h1 class="text-center">New Bench</h1>
+  <form class="needs-validation" action="/benches" method="POST" enctype="multipart/form-data" novalidate>
+    <div class="mb-3">
+      <label class="form-label" for="address">Address</label>
+      <div class="input-group">
+        <input class="form-control" type="text" id="address" name="address" required>
+        <button class="btn btn-outline-success" type="button" id="locate" title="Set current location"><i class="fa-solid fa-location-crosshairs"></i></button>
+      </div>
+      <div class="invalid-feedback">
+        Please provide an address.
+      </div>
+    </div>
+    <div class="mb-3">
+      <label class="form-label" for="description">Description</label>
+      <textarea class="form-control" name="description" required><%- description %></textarea>
+      <div class="invalid-feedback">
+        Please provide a description.
+      </div>
+    </div>
+    <div class="mb-3">
+      <label class="form-label" for="images">Images</label>
+      <input class="form-control" type="file" id="images" name="images" multiple>
+    </div>
+    <div class="mb-3">
+      <button class="btn btn-success">Add Bench</button>
+    </div>
+    <div class="text-center">
+      <a href="/benches" class="link-success">All Benches</a>
+    </div>
+  </form>
+</div>
+<script src="/js/getAddress.js"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=<%= MapsPublicKey %>&language=en"></script>

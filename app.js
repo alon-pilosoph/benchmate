@@ -143,6 +143,7 @@ app.use((req, res, next) => {
     res.locals.currentUser = req.user;
     // Flash messages
     res.locals.messages = req.flash();
+    res.locals.MapsPublicKey = process.env.MAPS_PUBLIC_API_KEY;
     next();
 });
 

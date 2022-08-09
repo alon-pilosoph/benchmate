@@ -55,7 +55,7 @@ Benchmate is a web app where users can add and review public benches. Additional
 To run locally:
 1. Install [MongoDB](https://www.mongodb.com/).
 2. Create a [Cloudinary](https://cloudinary.com/) account to get an API key and secret code.
-3. Create a [Google Maps Platform](https://mapsplatform.google.com/) account to get an API key.
+3. Create a [Google Maps Platform](https://mapsplatform.google.com/) account and add two API keys.
 4. Run the following commands:
 ```
 git clone https://github.com/alon-pilosoph/benchmate.git
@@ -67,8 +67,11 @@ npm install
 CLOUDINARY_CLOUD_NAME=<name>
 CLOUDINARY_KEY=<key>
 CLOUDINARY_SECRET=<secret>
-MAPS_API_KEY=<key>
+MAPS_PRIVATE_API_KEY=<key>
+MAPS_PUBLIC_API_KEY=<key>
 DB_URL=<url>
+SECRET=<secret>
+PORT=<port>
 ```
 
 
