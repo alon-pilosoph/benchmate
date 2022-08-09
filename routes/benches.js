@@ -4,11 +4,11 @@ const router = express.Router();
 // Set up multer to work with cloud storage
 const multer = require('multer');
 const { storage } = require('../cloudinary');
-// Limit file size to 1MB and 5 files per upload
+// Limit file size to 5MB and 5 files per upload
 const upload = multer({
     storage,
     limits: {
-        fileSize: 1000000,
+        fileSize: 5000000,
         files: 5
     }
 });
