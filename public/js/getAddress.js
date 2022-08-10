@@ -9,9 +9,9 @@ function getCoords() {
 }
 
 const getAddress = async () => {
-    // If geolocation permission is granted
+    // If browser supports geolocation
     if (navigator.geolocation) {
-        // Get user's geolocation and save coordinates in a LatLng object
+        // Try to access user's geolocation
         const geolocation = await getCoords();
         const location = {
             lat: geolocation.coords.latitude,

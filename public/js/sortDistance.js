@@ -1,43 +1,25 @@
-// Assign dropdown list to variable
-const sortList = document.getElementById("sort-list");
-// Assign list item to variable
-const sortItem = document.getElementById('sort-item');
-// Assign form input fields to variables
+const sortForm = document.getElementById('sort-by-distance');
 const lngInput = document.getElementById('lng-input');
 const latInput = document.getElementById('lat-input');
 
-window.addEventListener('load', (event) => {
-    // Try to access geolocation when page loads
-    if (navigator.geolocation) {
-        // If geolocation was accessed successfully, update form fields with coordinates, otherwise remove list item
-        navigator.geolocation.getCurrentPosition(
-            (position) => {
-                lngInput.value = position.coords.longitude;
-                latInput.value = position.coords.latitude;
-            }, () => sortList.removeChild(sortItem)
-        );
-    } else {
-        // If browser doesn't support geolocation, remove list item
-        sortList.removeChild(sortItem);
-    }
-});
+// A function that returns a promise with the user's geolocation
+function getCoords() {
+    return new Promise((resolve) =>
+        navigator.geolocation.getCurrentPosition(resolve)
+    );
+}
 
-navigator.permissions.query({ name: 'geolocation' }).then(function (permissionStatus) {
-    // Fire event when geolocation permission changes
-    permissionStatus.onchange = function () {
-        // If geolocation permission was changed to granted
-        if (this.state === 'granted') {
-            // If geolocation was accessed successfully, update form fields with coordinates
-            navigator.geolocation.getCurrentPosition(
-                (position) => {
-                    lngInput.value = position.coords.longitude;
-                    latInput.value = position.coords.latitude;
-                    sortList.appendChild(sortItem);
-                }
-            );
-        } else {
-            // Otherwise, remove list item
-            sortList.removeChild(sortItem);
-        }
-    };
-});
+// Event that fires when sort by distance form is submitted
+sortForm.onsubmit = async function (event) {
+    // Prevent form from being submitted
+    event.preventDefault();
+    // If browser supports geolocation
+    if (navigator.geolocation) {
+        // Try to access user's geolocation and set form fields to user's coordinates
+        const geolocation = await getCoords();
+        lngInput.value = geolocation.coords.longitude;
+        latInput.value = geolocation.coords.latitude;
+        // Submit form
+        sortForm.submit()
+    }
+}

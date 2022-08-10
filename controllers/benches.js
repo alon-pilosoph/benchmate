@@ -31,6 +31,7 @@ module.exports.index = async (req, res) => {
             try {
                 const lng = parseFloat(req.query.lng);
                 const lat = parseFloat(req.query.lat);
+                console.dir(req.query);
                 benches = await Bench.find({}).where('location').near({ center: { type: "Point", coordinates: [lng, lat] } });
             } catch (e) {
                 req.flash('danger', 'Failed to sort by distance. Make sure location access is allowed.');
