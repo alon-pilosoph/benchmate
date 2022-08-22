@@ -62,7 +62,7 @@
             <% } %>
           </h6>
           <p class="card-text">
-            <%= bench.description %>
+            <%- bench.description %>
           </p>
           <p class="card-text text-muted small mb-2">
             Submitted by <%= bench.author.username %>, <%= moment(bench.createdAt).format("MMM D, YYYY") %>
@@ -130,7 +130,7 @@
           </h6>
           <p></p>
           <p class="card-text">
-            <%= review.body %>
+            <%- review.body %>
           </p>
           <% if (currentUser && review.author.equals(currentUser._id)) { %>
           <form action="/benches/<%= bench._id %>/reviews/<%= review._id %>?_method=DELETE" method="POST">
