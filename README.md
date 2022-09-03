@@ -1,5 +1,5 @@
 # Benchmate
-> A bench review web app built in Express stack.
+> A bench review web app, built in Express stack.  
 > Live demo [here](https://benchmate-app.herokuapp.com/).
 
 ## Table of Contents
